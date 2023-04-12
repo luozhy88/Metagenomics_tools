@@ -38,7 +38,7 @@ source activate kraken2 # v2.1.2
 ################################################################
 
 DBNAME="/data/zhiyu/save_220T_user/zhiyu/Database/kraken2/maxikraken2/db"
-OUT="/data/zhiyu/data/software/Metagenomics_tools-main/output"
+OUT="/data/zhiyu/data/software/Metagenomics_tools/output"
 INPUT="/data/zhiyu/save_220T_user/zhiyu/ncbi_data/metagenomic/SRP373424/ceshi"
 
 for file in $INPUT/*_1.filtered.fastq.gz;
