@@ -38,8 +38,10 @@ source activate kraken2 # v2.1.2
 ################################################################
 
 DBNAME="/data/zhiyu/save_220T_user/zhiyu/Database/kraken2/maxikraken2/db"
-OUT="/data/zhiyu/data/software/Metagenomics_tools/output"
-INPUT="/data/zhiyu/save_220T_user/zhiyu/ncbi_data/metagenomic/SRP373424/ceshi"
+OUT="/data/zhiyu/save_220T_user/zhiyu/ncbi_data/metagenomic/SRP373424/kraken2/output"
+INPUT="/data/zhiyu/save_220T_user/zhiyu/ncbi_data/metagenomic/SRP373424/rm_host/test"
+
+rm sbatch_kraken2.sh
 
 for file in $INPUT/*_1.filtered.fastq.gz;
 do
@@ -58,12 +60,16 @@ echo $sample;
 # --paired $INPUT/${sample}_1.filtered.fastq.gz $INPUT/${sample}_2.filtered.fastq.gz
 
 # form biom conversion
-time kraken2 -db $DBNAME --threads 12 \
+echo "
+
+kraken2 -db $DBNAME --threads 12 \
 --report $OUT/$sample.report --output $OUT/$sample.out \
---paired $INPUT/${sample}_1.filtered.fastq.gz $INPUT/${sample}_2.filtered.fastq.gz
+--paired $INPUT/${sample}_1.filtered.fastq.gz $INPUT/${sample}_2.filtered.fastq.gz 
+
+" >> sbatch_kraken2.sh
 
 done
-
+cat sbatch_kraken2.sh |parallel -j 60
 ################################################################
 # 2) combine reports for each sample
 # use krakenTools (available in the kraken2 conda env)
