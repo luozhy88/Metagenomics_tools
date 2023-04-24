@@ -55,6 +55,9 @@ done
 # 2) combine reports for each sample
 # use krakenTools (available in the kraken2 conda env)
 # kraen-biom: https://github.com/smdabdoub/kraken-biom
+# pip install kraken-biom
+
+
 ################################################################
 OUT="/scratch/rx32940/metagenomics/kraken2/standard/output"
 
